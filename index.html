@@ -19,7 +19,7 @@
             margin: 0;
             background-color: #ffebee;
             font-family: 'Segoe UI', sans-serif;
-            overflow: hidden; /* Empêche le scroll quand le bouton bouge */
+            overflow: hidden;
             text-align: center;
             padding: 20px;
         }
@@ -39,7 +39,7 @@
 
         .buttons-container {
             display: flex;
-            flex-direction: column; /* Stack vertical sur mobile */
+            flex-direction: column;
             align-items: center;
             gap: 20px;
             width: 100%;
@@ -54,7 +54,7 @@
             border: none;
             border-radius: 50px;
             cursor: pointer;
-            width: 200px; /* Taille fixe pour plus de stabilité */
+            width: 200px;
         }
 
         #btnOui {
@@ -62,14 +62,12 @@
             color: white;
             box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
             z-index: 10;
-            transition: transform 0.2s;
         }
 
         #btnNon {
             background-color: #f44336;
             color: white;
             z-index: 5;
-            /* Transition rapide pour l'effet de fuite */
             transition: all 0.15s ease-out; 
         }
 
@@ -102,14 +100,10 @@
     </div>
 
     <script>
-        let ouiScale = 1;
-
         function moveButton() {
             const btn = document.getElementById('btnNon');
-            const btnOui = document.getElementById('btnOui');
             
-            // Calculer des positions qui restent dans la zone visible du téléphone
-            // On laisse une marge de 100px pour éviter que le bouton disparaisse à moitié
+            // On calcule les limites pour que le bouton reste visible sur mobile
             const maxX = window.innerWidth - btn.offsetWidth - 20;
             const maxY = window.innerHeight - btn.offsetHeight - 20;
             
@@ -119,10 +113,6 @@
             btn.style.position = 'fixed';
             btn.style.left = x + 'px';
             btn.style.top = y + 'px';
-
-            // Le bouton OUI grossit
-            ouiScale += 0.15;
-            btnOui.style.transform = `scale(${ouiScale})`;
         }
 
         function celebrate() {
